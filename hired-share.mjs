@@ -339,7 +339,8 @@ export const OPENER_TIMEOUT_MS = 15_000;
  */
 export function openInBrowser(url, exec = execFileSync) {
   const cmd = process.platform === 'darwin' ? 'open' : process.platform === 'win32' ? 'cmd' : 'xdg-open';
-  const args = process.platform === 'win32' ? ['/c', 'start', '', url] : [url];
+  // cmd reads the line before `start` does: an unescaped & ends the URL there.
+  const args = process.platform === 'win32' ? ['/c', 'start', '', url.replace(/[&|<>^]/g, '^$&')] : [url];
   try {
     // windowsHide: `cmd /c start` otherwise flashes a console window over
     // whatever the user is looking at.
