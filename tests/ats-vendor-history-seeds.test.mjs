@@ -160,6 +160,10 @@ try {
     atsBoardUrlOf('https://acme.careers.hibob.com/jobs/0b1c2d3e-0000-4000-8000-000000000001/apply', 'hibob'),
     'https://acme.careers.hibob.com',
   );
+  assert.equal(
+    atsBoardUrlOf('https://acme.careers.hibob.com./jobs/0b1c2d3e-0000-4000-8000-000000000001/apply', 'hibob'),
+    'https://acme.careers.hibob.com',
+  );
   for (const refused of [
     'http://acme.careers.hibob.com/jobs/1',
     'https://careers.hibob.com/jobs/1',
@@ -170,6 +174,10 @@ try {
   assert.equal(atsBoardUrlOf('http://acme.bamboohr.com/careers/1', 'bamboohr'), 'http://acme.bamboohr.com');
   assert.equal(
     atsBoardUrlOf('https://acme.recruitmentplatform.com/internal/details.html?jobId=4001&jobTitle=Role', 'talentlink'),
+    'https://acme.recruitmentplatform.com/internal',
+  );
+  assert.equal(
+    atsBoardUrlOf('https://acme.recruitmentplatform.com./internal/details.html?jobId=4001&jobTitle=Role', 'talentlink'),
     'https://acme.recruitmentplatform.com/internal',
   );
   assert.equal(

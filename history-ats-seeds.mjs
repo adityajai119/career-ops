@@ -140,7 +140,7 @@ export function atsBoardUrlOf(rawUrl, vendor = atsVendorOf(rawUrl)) {
   } else if (vendor === 'hibob') {
     // Seeds are sampled under --limit before detect() runs, so a host the
     // provider refuses is dropped here instead of taking a real board's slot.
-    if (!resolveHibobTenant(rawUrl)) return null;
+    if (!resolveHibobTenant(u.href)) return null;
     u.pathname = '/';
   } else if (vendor === 'hirehive') {
     // Seeds are sampled under --limit before detect() runs, so a host the
@@ -152,7 +152,7 @@ export function atsBoardUrlOf(rawUrl, vendor = atsVendorOf(rawUrl)) {
     // board; only the page file (`details.html`, `index.html`) is dropped.
     // Seeds are sampled under --limit before detect() runs, so a URL the
     // provider refuses is dropped here instead of taking a real board's slot.
-    const board = resolveTalentlinkBoard(rawUrl);
+    const board = resolveTalentlinkBoard(u.href);
     if (!board) return null;
     u = new URL(board.boardDir);
   }
